@@ -141,6 +141,8 @@ STATICFILES_DIRS=[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# 登录后重定向
+LOGIN_REDIRECT_URL='/afterlogin'
 
 # 发送邮件
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

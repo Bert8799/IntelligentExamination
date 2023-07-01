@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" , href="{% static 'style.css' %}" media="screen" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" />
+  </head>
+
+  <body>
+    <input type="checkbox" id="check" />
+    <!--顶端区域 开始-->
+    <header>
+      <label for="check">
+        <i style="left: 200px; margin-top: 6px" class="fas fa-bars" id="sidebar_btn"></i>
+      </label>
+      <div class="left_area">
+        <h3>智慧考试系统</h3>
+      </div>
+      <div class="center_area">
+        <img src="/static/image/哈工深.png" alt="哈工深" width="250" height="55" />
+      </div>
+      <div class="right_area">
+        <a href="/logout" class="logout_btn" style="border-radius: 10px">退出登录</a>
+      </div>
+    </header>
+    <!--顶端区域 结束-->
+    <!--左面板 开始-->
+    <div class="sidebar">
+      <center>
+        <br />
+        <img src="/static/{{student.profile_img}}" class="profile_image" alt="头像">
+        <h5 style="color:azure;" >{{student.student_id}} {{student.student_name}}</h4>
+        <h6 style="color: azure"> 学生 </h6>
+      </center>
+
+      <a href="/student/student-dashboard">
+        <i class="fas fa-tachometer-alt"></i>
+        <span>课程与试题</span>
+      </a>
+      <a href="/student/student-exam">
+        <i class="fas fa-book"></i>
+        <span>我的考试</span>
+      </a>
+      <a href="/student/student-marks">
+        <i class="fas fa-sort-numeric-up"></i>
+        <span>我的分数</span>
+      </a>
+    </div>
+    <!--左面板 结束-->
+
+    <!--content start-->
+    <div class="content">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      {% block content %} {% endblock content %}
+
+      <br />
+      <br />
+      <br />
+    </div>
+    <!--content end-->
+  </body>
+</html>

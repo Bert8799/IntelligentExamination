@@ -25,4 +25,5 @@ urlpatterns = [
 
 
     path('', views.home, name=''),
+    path('afterlogin', views.afterlogin,name='afterlogin'),
 ]
