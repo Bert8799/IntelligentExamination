@@ -14,6 +14,9 @@ from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = BASE_DIR / 'template'
+STATIC_DIR= BASE_DIR / 'static'
+MEDIA_ROOT= BASE_DIR / 'static'
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,6 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+
+# 添加的 APP
+
+EXTERNAL_APPS = [
+    'Exam',
+    'Student',
+    'Teacher',
+]
+
+INSTALLED_APPS += EXTERNAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,3 +134,14 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# 发送邮件
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_USE_TLS = False
+EMAIL_PORT = 25
+EMAIL_HOST_USER = "879951442@qq.com"
+EMAIL_HOST_PASSWORD = "jxrtnigbphvubega"
+# 接收邮件
+EMAIL_RECEIVING_USER = ['to@qq.com']
