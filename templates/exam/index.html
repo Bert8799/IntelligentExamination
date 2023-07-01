@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" dir="ltr">
+  <style>
+    body,
+    html {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+    }
+
+    .jumbotron {
+      flex-grow: 1;
+      margin-bottom: 0;
+      background-color: transparent !important;
+    }
+  </style>
+  <body>
+    {% include "exam/navbar.html" %}
+    <br />
+    <div class="jumbotron jumbotron-fluid d-flex justify-content-center align-items-center">
+      <form class="col-6 mx-auto card p-3 shadow-lg" method="post" enctype="multipart/form-data">
+        <br />
+        <br />
+        <div class="container text-center">
+          <h2 class="display-3 text-info">智慧考试系统</h2>
+          <br />
+
+          <p class="h4 d-none d-sm-block">Online Intelligent Examination System</p>
+          <br />
+          <hr />
+          <br />
+          <a href="/student/student_signup" class="btn btn-lg btn-outline-success" style="padding-right: 35px; border-radius: 0%">
+            <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+            学生登录
+          </a>
+          <br />
+          <br />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

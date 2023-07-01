@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      form {
+        margin: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    {% include "exam/navbar.html" %}
+
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="container mt-5">
+      <h3 style="text-align: center">学生注册</h3>
+      <hr />
+      {% if messages %}
+      <div class="alert alert-primary" role="alert">{% for message in messages %} {{message}} {% endfor %}</div>
+      {% endif %}
+      <form method="post" autocomplete="off" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="student_id">学号</label>
+            {% render_field studentForm.student_id|attr:'required:true' class="form-control" placeholder="Student ID" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="student_name">姓名</label>
+            {% render_field studentForm.student_name|attr:'required:true' class="form-control" placeholder="Student Name" %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="mobile">联系方式</label>
+            {% render_field studentForm.mobile|attr:'required:true' class="form-control" placeholder="Contact Number" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="profile_img">头像</label>
+            {% render_field studentForm.profile_img|attr:'required:true' class="form-control" placeholder="" %}
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="username">用户名</label>
+            {% render_field userForm.username|attr:'required:true' class="form-control" placeholder="Username" %}
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputPassword4">密码</label>
+            {% render_field userForm.password|attr:'required:true' class="form-control" placeholder="Password" %}
+          </div>
+        </div>
+
+        <div class="form-row"></div>
+        <hr />
+
+        <div style="text-align: center">
+          <button type="submit" class="btn btn-outline-success" style="border-radius: 0%">马上注册</button>
+        </div>
+        <br />
+      </form>
+    </div>
+
+    <br />
+    <br />
+  </body>
+</html>

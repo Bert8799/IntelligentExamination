@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # 学生用户表单
 class StudentUserForm(forms.ModelForm):
     class Meta:
-        models = User
+        model = User
         fields = ['username', 'password']
         widgets = {
             'password':forms.PasswordInput()

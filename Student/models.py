@@ -5,9 +5,9 @@ from django.contrib.auth.models import User
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    student_id = models.IntegerField(max_length=20)
+    student_id = models.CharField(max_length=20)
     student_name = models.CharField(max_length=100)
-    profile_img = models.ImageField(upload_to='profile_img/Student/', null=True, balnk=True)
+    profile_img = models.ImageField(upload_to='profile_img/Student/', null=True, blank=True)
     mobile = models.CharField(max_length=20, null=False)
 
     # 创建只读属性
