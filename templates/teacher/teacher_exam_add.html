@@ -1,0 +1,50 @@
+{% extends 'teacher/teacher_base.html' %} {% load widget_tweaks %} {% block content %}
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    a:link {
+      text-decoration: none;
+    }
+    .custom-shadow {
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+    }
+    .alert {
+      color: #004085; 
+      background-color: #cce5ff; 
+      border-color: #b8daff; 
+      padding: 10px; 
+      margin-bottom: 10px; 
+    }
+  </style>
+</head>
+<div class="container mt-5">
+  <form class="col-6 mx-auto card p-3 custom-shadow" method="POST" autocomplete="off" style="margin: 250px; margin-top: 100px">
+    <h2 class="display-3 text-info" style="text-align: center">添加考试信息</h2>
+    <hr />
+    {% if messages %}
+    <div class="alert alert-primary" role="alert">{% for message in messages %} {{message}} {% endfor %}</div>
+    {% endif %} {%csrf_token%}
+    <div class="form-group">
+      <label for="course_name">考试名称</label>
+      {% render_field courseForm.course_name class="form-control" placeholder="示例: xx数据库" %}
+      <br />
+      <label for="question_number">问题数量</label>
+      {% render_field courseForm.question_number class="form-control" placeholder="示例: 10" %}
+      <br />
+      <label for="total_marks">总分数</label>
+      {% render_field courseForm.total_marks class="form-control" placeholder="示例: 100" %}
+      <br />
+    </div>
+    <div style="display: flex; justify-content: center">
+      <button type="submit" class="btn btn-primary btn-lg" style="border-radius: 0%">添加考试</button>
+    </div>
+  </form>
+</div>
+<br />
+<br />
+<br />
+{% endblock content %}

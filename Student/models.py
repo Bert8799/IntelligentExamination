@@ -13,12 +13,11 @@ class Student(models.Model):
     # 创建只读属性
     @property
     def get_name(self) -> str:
-        return self.user.first_name+' '+self.user.last_name
+        return self.student_name
 
     @property
     def get_instance(self):
         return self
     
-    @property
     def __str__(self) -> str:
-        return self.user.first_name+' '+self.user.last_name
+        return self.student_id+' '+self.student_name

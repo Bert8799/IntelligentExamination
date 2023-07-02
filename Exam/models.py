@@ -5,11 +5,12 @@ from Student.models import Student
 # Create your models here.
 
 
-# 课程
+# 考试
 class Course(models.Model):
    course_name = models.CharField(max_length=50)
    question_number = models.PositiveIntegerField()
    total_marks = models.PositiveIntegerField()
+   date = models.DateTimeField(auto_now=True)
 
    def __str__(self):
         return self.course_name

@@ -31,22 +31,22 @@
     <div class="sidebar">
       <center>
         <br />
-        <img src="/static/{{student.profile_img}}" class="profile_image" alt="头像">
-        <h5 style="color:azure;" >{{student.student_id}} {{student.student_name}}</h4>
-        <h6 style="color: azure"> 学生 </h6>
+        <img src="/static/{{request.user.teacher.profile_img}}" class="profile_image" alt="头像" />
+        <h5 style="color: azure">{{request.user.teacher.teacher_id}} {{request.user.teacher.teacher_name}}</h5>
+        <h6 style="color: azure">教师</h6>
       </center>
-
-      <a href="/student/student-dashboard">
+      <br />
+      <a href="/teacher/teacher-dashboard">
         <i class="fas fa-tachometer-alt"></i>
-        <span>课程与试题</span>
+        <span>详情页</span>
       </a>
-      <a href="/student/student-exam">
+      <a href="/teacher/teacher-exam">
         <i class="fas fa-book"></i>
-        <span>我的考试</span>
+        <span>考试管理</span>
       </a>
-      <a href="/student/student-marks">
+      <a href="/teacher/teacher-question">
         <i class="fas fa-sort-numeric-up"></i>
-        <span>我的分数</span>
+        <span>试题管理</span>
       </a>
     </div>
     <!--左面板 结束-->

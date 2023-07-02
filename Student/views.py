@@ -22,11 +22,9 @@ def student_signup(request):
     forms_dict={'userForm':userForm,'studentForm':studentForm}
 
     if request.method == 'POST':
-        print("!!!!")
         userForm=forms.StudentUserForm(request.POST)
         studentForm=forms.StudentForm(request.POST,request.FILES)
         if userForm.is_valid() and studentForm.is_valid():
-            print('OK')
             user=userForm.save()
             user.set_password(user.password)
             user.save()
@@ -37,7 +35,7 @@ def student_signup(request):
             student_group[0].user_set.add(user)
             return redirect('student_login')
         else:
-            messages.info(request, "Username already taken")
+            messages.info(request, "用户名已被注册")
             return redirect('student_signup')
     return render(request,'student/student_signup.html',context=forms_dict)
 
@@ -57,13 +55,25 @@ def student_dashboard(request):
     return render(request,'student/student_dashboard.html',context={'dict':dict, 'student':student})
 
 
+# 我的考试
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
 def student_exam(request):
+    student = request.user.student
     courses=QMODEL.Course.objects.all()
-    return render(request,'student/student_exam.html',{'courses':courses})
+    return render(request,'student/student_exam.html',{'courses':courses, 'student':student})
 
 
+# 我的分数
+@login_required(login_url='student_login')
+@user_passes_test(is_student)
+def student_marks(request):
+    student = request.user.student
+    courses=QMODEL.Course.objects.all()
+    return render(request,'student/student_marks.html',{'courses':courses, 'student':student})
+
+
+# 以下位考试与计算分数流程
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
 def take_exam(request,pk):
@@ -129,11 +139,3 @@ def check_marks(request,pk):
     student = models.Student.objects.get(user_id=request.user.id)
     results= QMODEL.Result.objects.all().filter(exam=course).filter(student=student)
     return render(request,'student/check_marks.html',{'results':results})
-
-
-@login_required(login_url='student_login')
-@user_passes_test(is_student)
-def student_marks(request):
-    courses=QMODEL.Course.objects.all()
-    return render(request,'student/student_marks.html',{'courses':courses})
-  
