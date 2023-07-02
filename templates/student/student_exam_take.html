@@ -1,0 +1,62 @@
+{% extends 'student/student_base.html' %} {% block content %} {%load static%}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <style>
+    .custom-jumbotron {
+      background-color: #fff;
+      color: black;
+      padding: 1rem;
+      box-shadow: 0 0.125rem 0.25rem rgba(0, 123, 255, 0.3); /* 蓝色阴影 */
+      border-radius: 0.25rem;
+    }
+    li {
+      font-size: 16px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<br />
+<br />
+<div class="container my-4">
+  <div class="jumbotron custom-jumbotron">
+    <div class="row">
+      <div class="card border-info mx-4 my-4">
+        <div class="card-body">
+          <h2 class="display-3 text-info card-title" style="text-align: center">考试细则</h2>
+          <p class="card-text"></p>
+          <ul style="list-style: decimal">
+            <li>考试名称: {{course.course_name}}，试题总数: {{total_questions}}，考试总分: {{total_marks}}</li>
+            <li>
+              试题均为
+              <span class="text-danger">单选题</span>
+            </li>
+            <li>每道题都有不同的分数</li>
+            <li>如果按刷新或返回上一页，将会有一个新问题出现，并且当前问题将计算尝试次数</li>
+            <li>问题随机呈现</li>
+            <li>
+              提交答案后，
+              <span class="text-danger">分数立即呈现</span>
+            </li>
+          </ul>
+          <p></p>
+          <div style="display: flex; justify-content: center">
+            <a href="{% url 'student-exam-start' course.id  %}" class="btn btn-success" style="border-radius: 10px; width: 60%">进入考试</a>
+          </div>
+        </div>
+        <hr />
+        <h3 class="display-4 text-info card-footer" style="text-align: center">祝同学们好运！</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+{% endblock content %}

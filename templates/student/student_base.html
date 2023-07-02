@@ -31,9 +31,9 @@
     <div class="sidebar">
       <center>
         <br />
-        <img src="/static/{{student.profile_img}}" class="profile_image" alt="头像">
-        <h5 style="color:azure;" >{{student.student_id}} {{student.student_name}}</h4>
-        <h6 style="color: azure"> 学生 </h6>
+        <img src="/static/{{request.user.student.profile_img}}" class="profile_image" alt="头像">
+        <h4 style="color:azure;" >{{request.user.student.student_id}} {{request.user.student.student_name}}</h4>
+        <h5 style="color: azure"> 学生 </h5>
       </center>
 
       <a href="/student/student-dashboard">

@@ -5,7 +5,7 @@ a:link {
 body {
   margin: 0;
   padding: 0;
-  font-family: "Gill Sans", sans-serif;
+  font-family: SimHei, "Gill Sans";
 }
 
 header {
@@ -133,7 +133,7 @@ label #sidebar_btn:hover {
 
 .content {
   margin-left: 250px;
-  background: #fff;
+  background: #fff; /* 在此设置背景 */
   background-position: center;
   background-size: cover;
   height: 100vh;

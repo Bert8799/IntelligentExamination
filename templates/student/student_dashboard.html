@@ -9,7 +9,7 @@
   <link href="http://netdna.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
-  <link ref="stylesheet" href="{% static 'student_style.css' %}" type="text/css" />
+  <link rel="stylesheet" href="{% static 'student_style.css' %}" type="text/css" />
 </head>
 <br />
 <br />
@@ -18,11 +18,11 @@
   <div class="row">
     <div class="col-md-4 col-xl-6">
       <div class="card bg-c-blue order-card">
-        <div class="card-block">
-          <h6 class="m-b-20">Available Exams</h6>
+        <div class="card-block p-3">
+          <h5 class="mb-4">所有考试</h5>
           <h2 class="text-right">
-            <i class="fas fa-book f-left"></i>
-            <span>{{total_course}}</span>
+            <i class="fas fa-book mr-3"></i>
+            <span style="font-size: 30px;">{{ dict.total_course }}</span>
           </h2>
         </div>
       </div>
@@ -30,11 +30,11 @@
 
     <div class="col-md-4 col-xl-6">
       <div class="card bg-c-yellow order-card">
-        <div class="card-block">
-          <h6 class="m-b-20">Total Questions</h6>
+        <div class="card-block p-3">
+          <h5 class="mb-4">试题总数</h5>
           <h2 class="text-right">
-            <i class="fas fa-question-circle f-left"></i>
-            <span>{{total_question}}</span>
+            <i class="fas fa-question-circle mr-3"></i>
+            <span style="font-size: 30px;">{{dict.total_question}}</span>
           </h2>
         </div>
       </div>

@@ -1,4 +1,4 @@
-{% extends 'student/student_base.html' %} {% block content %} {%load static%}
+{% extends 'teacher/teacher_base.html' %} {% block content %} {%load static%}
 
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css" />
@@ -24,23 +24,32 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h6 class="panel-title">所有考试</h6>
+      <h6 class="panel-title">Available Questions</h6>
     </div>
     <table class="table table-hover table-bordered" id="dev-table">
       <thead>
         <tr>
-          <th>考试名称</th>
-          <th>是否参加</th>
+          <th>试题内容</th>
+          <th>分数</th>
+          <th>选项A</th>
+          <th>选项B</th>
+          <th>选项C</th>
+          <th>选项D</th>
+          <th>答案</th>
+          <th>是否删除</th>
         </tr>
       </thead>
-      {% for t in courses %}
+      {% for c in questions %}
       <tr>
-        <td>{{t.course_name}}</td>
+        <td>{{c.question}}</td>
+        <td>{{c.marks}}</td>
+        <td>{{c.option1}}</td>
+        <td>{{c.option2}}</td>
+        <td>{{c.option3}}</td>
+        <td>{{c.option4}}</td>
+        <td>{{c.answer}}</td>
         <td>
-          <a class="btn btn-success btn-sm" style="border-radius: 0px" href="{% url 'student-exam-take' t.id  %}">
-            <span class="glyphicon glyphicon-check"></span>
-            参加考试
-          </a>
+          <a class="btn btn-danger btn-xs" style="border-radius: 0%" href="{% url 'teacher-question-delete' c.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
       </tr>
       {% endfor %}

@@ -14,8 +14,12 @@ urlpatterns = [
     path('teacher-exam', views.teacher_exam,name='teacher-exam'),
     path('teacher-exam-add', views.teacher_exam_add,name='teacher-exam-add'),
     path('teacher-exam-view', views.teacher_exam_view,name='teacher-exam-view'),
-    path('exam-delete/<int:pk>', views.exam_delete,name='exam-delete'),
+    path('teacher-exam-delete/<int:pk>', views.exam_delete,name='teacher-exam-delete'),
 
 
     path('teacher-question', views.teacher_question,name='teacher-question'),
+    path('teacher-question-add', views.teacher_question_add,name='teacher-question-add'),
+    path('teacher-question-view', views.teacher_question_view,name='teacher-question-view'),
+    path('teacher-question-see/<int:pk>', views.question_see,name='teacher-question-see'),
+    path('teacher-question-delete/<int:pk>', views.question_delete,name='teacher-question-delete'),
 ]

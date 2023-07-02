@@ -47,36 +47,25 @@ def is_student(user):
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
 def student_dashboard(request):
-    student = request.user.student
     dict={
         'total_course':QMODEL.Course.objects.all().count(),
         'total_question':QMODEL.Question.objects.all().count(),
     }
-    return render(request,'student/student_dashboard.html',context={'dict':dict, 'student':student})
+    return render(request, 'student/student_dashboard.html', context={'dict':dict})
 
 
 # 我的考试
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
 def student_exam(request):
-    student = request.user.student
     courses=QMODEL.Course.objects.all()
-    return render(request,'student/student_exam.html',{'courses':courses, 'student':student})
-
-
-# 我的分数
-@login_required(login_url='student_login')
-@user_passes_test(is_student)
-def student_marks(request):
-    student = request.user.student
-    courses=QMODEL.Course.objects.all()
-    return render(request,'student/student_marks.html',{'courses':courses, 'student':student})
+    return render(request,'student/student_exam.html', context={'courses':courses})
 
 
 # 以下位考试与计算分数流程
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
-def take_exam(request,pk):
+def exam_take(request,pk):
     course=QMODEL.Course.objects.get(id=pk)
     total_questions=QMODEL.Question.objects.all().filter(course=course).count()
     questions=QMODEL.Question.objects.all().filter(course=course)
@@ -84,36 +73,37 @@ def take_exam(request,pk):
     for q in questions:
         total_marks=total_marks + q.marks
     
-    return render(request,'student/take_exam.html',{'course':course,'total_questions':total_questions,'total_marks':total_marks})
+    return render(request, 'student/student_exam_take.html', context={'course':course,'total_questions':total_questions,'total_marks':total_marks})
 
 
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
-def start_exam(request,pk):
+def exam_start(request,pk):
     course=QMODEL.Course.objects.get(id=pk)
     questions=QMODEL.Question.objects.all().filter(course=course)
     if request.method=='POST':
         pass
-    response= render(request,'student/start_exam.html',{'course':course,'questions':questions})
+    response= render(request,'student/student_exam_start.html',{'course':course,'questions':questions})
     response.set_cookie('course_id',course.id)
     return response
 
 
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
-def calculate_marks(request):
+def exam_marks(request):
     if request.COOKIES.get('course_id') is not None:
         course_id = request.COOKIES.get('course_id')
         course=QMODEL.Course.objects.get(id=course_id)
         
         total_marks=0
         questions=QMODEL.Question.objects.all().filter(course=course)
+        
         for i in range(len(questions)):
-            
             selected_ans = request.COOKIES.get(str(i+1))
             actual_answer = questions[i].answer
             if selected_ans == actual_answer:
                 total_marks = total_marks + questions[i].marks
+
         student = models.Student.objects.get(user_id=request.user.id)
         result = QMODEL.Result()
         result.marks=total_marks
@@ -121,21 +111,28 @@ def calculate_marks(request):
         result.student=student
         result.save()
 
-        return redirect('view-result')
-
+        return redirect(f'student-marks-see/{course_id}')
 
 
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
-def view_result(request):
+def exam_result(request):
     courses=QMODEL.Course.objects.all()
-    return render(request,'student/view_result.html',{'courses':courses})
-    
+    return render(request, 'student/student_exam_result.html', context={'courses':courses})
+
+
+# 我的分数
+@login_required(login_url='student_login')
+@user_passes_test(is_student)
+def student_marks(request):
+    courses=QMODEL.Course.objects.all()
+    return render(request, 'student/student_marks.html', context={'courses':courses})
+
 
 @login_required(login_url='student_login')
 @user_passes_test(is_student)
-def check_marks(request,pk):
+def marks_see(request, pk):
     course=QMODEL.Course.objects.get(id=pk)
     student = models.Student.objects.get(user_id=request.user.id)
     results= QMODEL.Result.objects.all().filter(exam=course).filter(student=student)
-    return render(request,'student/check_marks.html',{'results':results})
+    return render(request, 'student/student_marks_see.html', {'results':results})

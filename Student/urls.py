@@ -10,14 +10,15 @@ urlpatterns = [
 
 
     path('student-dashboard', views.student_dashboard,name='student-dashboard'),
+
+
     path('student-exam', views.student_exam,name='student-exam'),
-    path('take-exam/<int:pk>', views.take_exam,name='take-exam'),
-    path('start-exam/<int:pk>', views.start_exam,name='start-exam'),
+    path('student-exam-take/<int:pk>', views.exam_take,name='student-exam-take'),
+    path('student-exam-start/<int:pk>', views.exam_start,name='student-exam-start'),
+    path('student-exam-marks', views.exam_marks,name='student-exam-marks'),
+    path('student-exam-result', views.exam_result,name='student-exam-result'),
 
 
-    path('calculate-marks', views.calculate_marks,name='calculate-marks'),
-    path('view-result', views.view_result,name='view-result'),
-    path('check-marks/<int:pk>', views.check_marks,name='check-marks'),
     path('student-marks', views.student_marks,name='student-marks'),
-
+    path('student-marks-see/<int:pk>', views.marks_see,name='student-marks-see'),
 ]

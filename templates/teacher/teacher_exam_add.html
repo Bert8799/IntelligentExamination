@@ -26,13 +26,13 @@
     <h2 class="display-3 text-info" style="text-align: center">添加考试信息</h2>
     <hr />
     {% if messages %}
-    <div class="alert alert-primary" role="alert">{% for message in messages %} {{message}} {% endfor %}</div>
+    <div class="alert alert-primary text-center" role="alert">{% for message in messages %} {{message}} {% endfor %}</div>
     {% endif %} {%csrf_token%}
     <div class="form-group">
       <label for="course_name">考试名称</label>
       {% render_field courseForm.course_name class="form-control" placeholder="示例: xx数据库" %}
       <br />
-      <label for="question_number">问题数量</label>
+      <label for="question_number">试题数量</label>
       {% render_field courseForm.question_number class="form-control" placeholder="示例: 10" %}
       <br />
       <label for="total_marks">总分数</label>

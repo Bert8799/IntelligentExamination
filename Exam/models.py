@@ -18,7 +18,7 @@ class Course(models.Model):
 
 # 问题（单选题）
 class Question(models.Model):
-    course=models.ForeignKey(Course,on_delete=models.CASCADE)
+    course=models.ForeignKey(Course, on_delete=models.CASCADE)
     marks=models.PositiveIntegerField()
     question=models.CharField(max_length=600)
 
@@ -27,9 +27,9 @@ class Question(models.Model):
     option3=models.CharField(max_length=200)
     option4=models.CharField(max_length=200)
 
-    cat=(('Option1','Option1'),('Option2','Option2'),('Option3','Option3'),('Option4','Option4'))
+    cat=(('A', '选项A'), ('B', '选项B'), ('C', '选项C'), ('D', '选项D'))
     
-    answer=models.CharField(max_length=200,choices=cat)
+    answer=models.CharField(max_length=200, choices=cat)
 
 
 class Result(models.Model):

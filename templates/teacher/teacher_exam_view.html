@@ -17,11 +17,21 @@
     .row {
       margin: 100px;
     }
+    .alert {
+      color: #004085; 
+      background-color: #cce5ff; 
+      border-color: #b8daff; 
+      padding: 10px; 
+      margin-bottom: 10px; 
+    }
   </style>
 </head>
 <br />
 <br />
 <div class="container">
+  {% if messages %}
+  <div class="alert alert-primary text-center" role="alert">{% for message in messages %} {{message}} {% endfor %}</div>
+  {% endif %}
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h6 class="panel-title">所有考试信息</h6>
@@ -30,7 +40,7 @@
       <thead>
         <tr>
           <th>考试名称</th>
-          <th>所有问题</th>
+          <th>所有试题</th>
           <th>总分</th>
           <th>是否删除</th>
         </tr>
@@ -42,7 +52,7 @@
         <td>{{t.total_marks}}</td>
 
         <td>
-          <a class="btn btn-danger btn-xs" style="border-radius: 0%" href="{% url 'exam-delete' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
+          <a class="btn btn-danger btn-xs" style="border-radius: 0%" href="{% url 'teacher-exam-delete' t.id  %}"><span class="glyphicon glyphicon-trash"></span></a>
         </td>
       </tr>
       {% endfor %}

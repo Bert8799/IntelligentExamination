@@ -49,7 +49,12 @@ a:link {
 .f-right {
   float: right;
 }
+
 header {
   left: 0px;
   right: 0px;
+}
+
+body {
+  font-family: SimHei, "Gill Sans";
 }
